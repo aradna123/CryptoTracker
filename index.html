@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crypto Price Tracker</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white min-h-screen flex flex-col">
+
+  <!-- HEADER / NAVBAR -->
+  <header class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur border-b border-gray-700">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between px-4 py-3 gap-3">
+      <a href="#/" class="text-yellow-400 text-3xl font-extrabold select-none hover:text-yellow-300 transition duration-200">CryptoTracker</a>
+ 
+      <nav class="flex flex-wrap items-center gap-2 sm:gap-4 text-sm font-semibold text-gray-300">
+        <button id="btnHome" class="nav-btn px-3 py-1 rounded hover:bg-yellow-400 hover:text-black transition">Home</button>
+        <button id="btnSearch" class="nav-btn px-3 py-1 rounded hover:bg-yellow-400 hover:text-black transition">Search</button>
+        <button id="btnFavFilter" class="nav-btn px-3 py-1 rounded hover:bg-yellow-400 hover:text-black transition">⭐ Favorites</button>
+     
+
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <select id="currencySelect" aria-label="Select currency" class="bg-gray-800 border border-gray-700 rounded px-3 py-1 text-sm text-white focus:outline-yellow-400">
+          <option value="usd" selected>USD ($)</option>
+          <option value="eur">EUR (€)</option>
+          <option value="pkr">PKR</option>
+          <option value="gbp">GBP (£)</option>
+          <option value="inr">INR (₹)</option>
+        </select>
+
+        <select id="sortSelect" aria-label="Sort coins" class="bg-gray-800 border border-gray-700 rounded px-3 py-1 text-sm text-white focus:outline-yellow-400">
+          <option value="market_cap_desc" selected>Market Cap ↓</option>
+          <option value="market_cap_asc">Market Cap ↑</option>
+          <option value="price_desc">Price ↓</option>
+          <option value="price_asc">Price ↑</option>
+          <option value="change_desc">24h % ↓</option>
+          <option value="change_asc">24h % ↑</option>
+        </select>
+
+        <select id="autoRefreshSelect" aria-label="Auto refresh interval" class="bg-gray-800 border border-gray-700 rounded px-3 py-1 text-sm text-white focus:outline-yellow-400">
+          <option value="0">Auto-refresh Off</option>
+          <option value="30">Every 30s</option>
+          <option value="60" selected>Every 60s</option>
+          <option value="180">Every 3m</option>
+          <option value="300">Every 5m</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 py-6 w-full">
+    <!-- HOME -->
+    <section id="homeSection" class="fade-in">
+      <h1 class="text-3xl font-bold mb-4 select-none">Top Cryptocurrencies</h1>
+      <p id="homeStatus" class="text-gray-400 mb-3"></p>
+      <div id="coinsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- SEARCH -->
+    <section id="searchSection" class="hidden fade-in">
+      <button id="searchBackBtn" class="mb-4 text-yellow-400 hover:text-yellow-300 font-semibold select-none">← Back to Home</button>
+      <form id="searchForm" class="flex gap-3 mb-4">
+        <input id="searchInput" type="search" placeholder="Search cryptocurrency by name or symbol" class="flex-grow rounded bg-gray-800 border border-gray-700 px-4 py-2 text-white placeholder-gray-500 focus:outline-yellow-400" required />
+        <button type="submit" class="bg-yellow-400 text-black font-semibold px-5 rounded hover:bg-yellow-300 transition select-none">Search</button>
+      </form>
+      <p id="searchStatus" class="text-gray-400 mb-3"></p>
+      <div id="searchResults" class="space-y-3"></div>
+    </section>
+
+    <!-- COIN DETAIL -->
+    <section id="detailSection" class="hidden fade-in max-w-4xl mx-auto">
+      <button id="detailBackBtn" class="mb-4 text-yellow-400 hover:text-yellow-300 font-semibold select-none">← Back to Home</button>
+      <h2 id="detailTitle" class="text-4xl font-extrabold mb-2 select-none"></h2>
+      <p id="detailStatus" class="text-gray-400 mb-4"></p>
+      <div id="detailContent" class="bg-gray-800 rounded-lg p-6 space-y-6"></div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-3 select-none">Price History (Last 30 Days)</h3>
+        <div class="bg-gray-700 rounded p-4">
+          <canvas id="priceChart" height="180"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-gray-500 py-4 select-none">
+    © 2025 CryptoTracker • Powered by CoinGecko API
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* style.css - extra UI polish */
+
+/* fade-in animation */
+.fade-in {
+  animation: fadeInUp 0.35s ease forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Coin card style */
+.coin-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(250, 204, 21, 0.5), 0 4px 6px -4px rgba(250, 204, 21, 0.3);
+  padding: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.coin-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(250, 204, 21, 0.8), 0 10px 10px -5px rgba(250, 204, 21, 0.6);
+}
+
+/* Coin header */
+.coin-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Coin image style */
+.coin-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background: white;
+  padding: 3px;
+  object-fit: contain;
+}
+
+/* Price change badges */
+.badge-up {
+  background-color: #14532d;
+  color: #4ade80;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+}
+.badge-down {
+  background-color: #7f1d1d;
+  color: #f87171;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+}
+
+/* Favorite star button */
+.star-btn {
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  color: #bbb;
+  align-self: flex-start;
+}
+.star-btn:hover {
+  color: #facc15;
+  transform: scale(1.25);
+}
+.star-active {
+  color: #facc15;
+  text-shadow: 0 0 8px rgba(250, 204, 21, 0.8);
+}
+
+/* Scrollbar for detail description */
+#detailContent div[style*="overflow:auto"]::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#detailContent div[style*="overflow:auto"]::-webkit-scrollbar-thumb {
+  background-color: #facc15;
+  border-radius: 3px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .coin-card {
+    padding: 1rem;
+  }
+}
