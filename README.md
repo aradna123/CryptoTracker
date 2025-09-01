@@ -51,4 +51,4 @@ A simple and responsive **Crypto Tracker Application** built with **HTML, CSS, a
 ---
 
 
-👉 Would you like me to make a **short, badge-style GitHub version** (with shields.io badges like “Made with JavaScript”, “API powered”, etc.) so your repo looks even more professional?
+
